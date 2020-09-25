@@ -1,0 +1,8 @@
+C:\Users\Pigi\Desktop\Esercizio2\Esercizio2\bin\Debug\Esercizio2.exe.config
+C:\Users\Pigi\Desktop\Esercizio2\Esercizio2\bin\Debug\Esercizio2.exe
+C:\Users\Pigi\Desktop\Esercizio2\Esercizio2\bin\Debug\Esercizio2.pdb
+C:\Users\Pigi\Desktop\Esercizio2\Esercizio2\obj\Debug\Esercizio2.csprojAssemblyReference.cache
+C:\Users\Pigi\Desktop\Esercizio2\Esercizio2\obj\Debug\Esercizio2.Properties.Resources.resources
+C:\Users\Pigi\Desktop\Esercizio2\Esercizio2\obj\Debug\Esercizio2.csproj.GenerateResource.cache
+C:\Users\Pigi\Desktop\Esercizio2\Esercizio2\obj\Debug\Esercizio2.exe
+C:\Users\Pigi\Desktop\Esercizio2\Esercizio2\obj\Debug\Esercizio2.pdb
