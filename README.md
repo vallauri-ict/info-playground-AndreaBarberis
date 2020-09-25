@@ -1,5 +1,5 @@
-#Info-playground#
+#  Info-playground #
 
 _Andrea.Barberis_
 
-#esercizi di informatica#
+# esercizi di informatica #
