@@ -1,7 +1,141 @@
-1) SELECT Nome FROM Sale WHERE Citta = 'Pisa'
-2) SELECT Titolo FROM Film WHERE Regista = 'F. Fellini' AND AnnoProduzione > 1960
-3) SELECT Titolo, Durata FROM Film WHERE Genere = 'Fantascienza' AND AnnoProduzione > 1960 AND (Nazionalita = 'Francese' OR Nazionalita = 'Giapponese')
-4) SELECT Titolo FROM Film WHERE (Genere = 'Fantascienza' AND Nazionalita = 'Giapponese' AND AnnoProduzione > 1960) OR Nazionalita = 'Francese'
-5) SELECT Titolo FROM Film WHERE Regista = (SELECT Regista FROM Film WHERE Titolo = 'Casablanca')
-6) SELECT Titolo, Genere FROM Film f, Proiezioni p WHERE p.CodFilm = f.CodFilm AND p.DataProiezione = '25/12/2004'
-7) SELECT Titolo, Genere FROM Film f, Proiezioni p, Sale s WHERE p.CodFilm = f.CodFilm AND p.DataProiezione = '25/12/2004' AND p.CodSala = s.CodSala AND s.Citta = 'Napoli'
+///CREAZIONE TABELLE
+
+CREATE TABLE [dbo].[Aereoporto]
+(
+	[Citta] NVARCHAR(32) NOT NULL PRIMARY KEY,
+	[Nazione] NVARCHAR(32) NOT NULL,
+	[NumPiste] INT
+)
+CREATE TABLE [dbo].[Volo]
+(
+	[IdVolo] NVARCHAR(10) NOT NULL PRIMARY KEY,
+	[GiornoSett] NVARCHAR(10) NOT NULL,
+	[CittaPart] NVARCHAR(32) NOT NULL,
+	[OraPart] DATETIME NOT NULL,
+	[CittaArr] NVARCHAR(32) NOT NULL,
+	[OraArr] DATETIME NOT NULL,
+	[TipoAereo] NVARCHAR(20) NOT NULL,
+	FOREIGN KEY(TipoAereo) REFERENCES Aereo(TipoAereo),
+        FOREIGN KEY(CittaPart) REFERENCES Aeroporto(Citta),
+	FOREIGN KEY(CittaArr) REFERENCES Aeroporto(Citta)
+)
+CREATE TABLE [dbo].[Aereo]
+(
+	[TipoAereo] NVARCHAR(20) NOT NULL PRIMARY KEY,
+	[NumPassegeri] INT NOT NULL,
+	[QtaMerci] INT NOT NULL,
+)
+
+///INSERIMENTO
+INSERT INTO Aeroporto(Citta,Nazione,NumPiste) VALUES ('Roma', 'Italia', 5)
+INSERT INTO Volo(IdVolo,GiornoSett,CittaPart,OraPart,CittaArr,OraArr,TipoAereo) VALUES ('MR456', 'Sabato', 'Milano', 15.38,'Roma',17.40,'Boeing747')
+INSERT INTO Aereo(TipoAereo,NumPassegeri,QtaMerci) VALUES ('Boeing747', 56, 8)
+             
+
+ESERCIZIO 1
+
+SELECT * FROM Volo WHERE CittaArr = 'Roma' ORDER BY CittaPart ASC
+
+ESERCIZIO 2
+
+SELECT * FROM Aeroporto WHERE NumPiste IS NULL 
+
+ESERCIZIO 3
+
+SELECT * FROM Volo, Aereo Where Aereo.TipoAereo = Volo.TipoAereo AND QtaMerci>0 AND NumPassegeri>0
+
+
+DATABASE CINEMA
+
+CREATE TABLE [dbo].[Attori]
+(
+	[CodAttore] INT NOT NULL PRIMARY KEY,
+	[Nome] NVARCHAR(32) NOT NULL,
+	[AnnoNascita] INT NOT NULL,
+        [Nazionalita] NVARCHAR(32) NOT NULL
+)
+
+CREATE TABLE [dbo].[Recita]
+(
+        [CodAttore] INT NOT NULL,
+        FOREIGN KEY(CodAttore) REFERENCES Recita(CodAttore),
+        [CodFilm] INT NOT NULL,
+	FOREIGN KEY(CodFilm) REFERENCES Film(CodFilm)
+)
+
+ALTER TABLE RECITA ADD FOREIGN KEY(CodFilm) REFERENCES Film(CodFilm) ///Nel caso devo aggiungere ad una tabella già creata
+
+CREATE TABLE [dbo].[Film]
+(
+	[CodFilm] INT NOT NULL PRIMARY KEY,
+	[Titolo] NVARCHAR(50) NOT NULL,
+	[AnnoProd] INT NOT NULL,
+        [Nazionalita] NVARCHAR(32) NOT NULL,
+        [Regista] NVARCHAR(32) NOT NULL,
+ 	[Genere] NVARCHAR(32) NOT NULL,
+	[Durata] INT NOT NULL
+)
+
+CREATE TABLE [dbo].[Proiezioni]
+(
+	[CodProiezione] INT NOT NULL PRIMARY KEY,
+	[CodFilm] INT NOT NULL,
+	FOREIGN KEY(CodFilm) REFERENCES Film(CodFilm),
+	[CodSala] INT NOT NULL,
+	FOREIGN KEY(CodSala) REFERENCES Sale(CodSala)
+        [Incasso] INT NOT NULL,
+        [DataProiezione] Date NOT NULL
+)
+
+CREATE TABLE [dbo].[Sale]
+(
+	[CodSala] INT NOT NULL PRIMARY KEY,
+	[Posti] INT NOT NULL,
+	[Nome] NVARCHAR(32) NOT NULL,
+        [Citta] NVARCHAR(32) NOT NULL,
+)
+
+EX1
+SELECT Nome FROM Sale WHERE Citta = 'Pisa'
+EX2
+SELECT Titolo FROM Film WHERE Regista = 'Fellini' AND AnnoProduzione > 1960
+EX3
+SELECT Titolo, Durata FROM Film WHERE Genere = 'Fantascienza' AND (Nazionalita = 'Giappone' OR Nazionalita = 'Francia') AND AnnoProd > 1990
+EX4
+SELECT Titolo FROM Film WHERE Genere = 'Fantascienza' AND AnnoProd > 1990 AND Nazionalita = 'Giappone' OR Nazionalita = 'Francia' AND Genere = 'Fantascienza'
+EX5
+SELECT Titolo FROM Film WHERE Regista = (SELECT Regista FROM Film WHERE Titolo = 'Casablanca')
+EX6
+SELECT F.Titolo, F.Genere FROM Film F, Proiezioni P WHERE F.CodFilm = P.CodFilm AND P.DataProiezione = CAST('2004-12-25' as DATE)
+EX7
+SELECT DISTINCT Titolo, Genere FROM Film F, Proiezioni P, Sale S WHERE F.CodFilm = P.CodFilm AND P.DataProiezione = CAST('2004-12-25' as DATE) AND S.CodSala = P.CodSala AND S.Citta = 'Napoli'
+EX8
+SELECT DISTINCT S.Nome, FROM Sale S, Film F, Proiezioni P, Recita R, Attori A WHERE P.DataProiezione = CAST('2004-12-25' as DATE) AND P.CodSala = S.CodSala AND S.citta = 'Napoli'
+AND F.CodFilm = P.CodFilm AND A.CodAttore = R.CodAttore AND A.Nome = 'R.Williams' AND R.CodFilm = F.CodFilm
+EX9
+SELECT F.Titolo FROM Recita R, Film F, Attori A WHERE R.CodFilm = F.CodFilm AND R.CodAttore = A.CodAttore AND (A.Nome = 'S.Loren' OR A.Nome = 'M.Mastroianni')
+EX10
+SELECT f.titolo FROM Film f WHERE 'Mastroianni' IN (SELECT a.Nome FROM Attori a, Recita r WHERE r.CodFilm=f.CodFilm AND r.CodAttore=a.CodAttore) AND 'Loren' IN (SELECT a.Nome FROM Attori a, Recita r WHERE r.CodFilm=f.CodFilm AND r.CodAttore=a.CodAttore)
+EX11
+SELECT Titolo, Nome FROM Recita R, Film F, Attori A WHERE R.CodFilm = F.CodFilm AND R.CodAttore = (SELECT CodAttore FROM Attori WHERE Nazionalita = 'Francia')
+EX12
+SELECT Titolo, Nome FROM Sale S, Film F, Proiezioni P WHERE S.Citta= 'Pisa' AND P.DataProiezioni = CAST('2005-11' as DATE) AND S.CodSala = P.CodSala AND P.CodFilm = F.CodFilm
+EX13
+SELECT COUNT(CodSala) FROM Sale WHERE Citta = 'Pisa'
+EX14
+SELECT SUM(Posti) FROM Sale WHERE Citta = 'Pisa'
+EX15
+SELECT s.Citta, count(*) as Numero_sale FROM Sale s GROUP BY s.Citta
+EX16
+SELECT s.Citta FROM Sale s WHERE s.Posti > 60 GROUP BY s.Citta //nelle group by vanno ripetuti i campi nel SELECT o aggiurgene altri
+EX17
+SELECT f.Regista, count(*) as Numero_film FROM film f WHERE f.AnnoProduzione>1990 GROUP BY f.Regista
+EX18
+SELECT f.Regista, sum(p.Incasso) as Totale_incasso FROM Film f, Proiezioni p WHERE p.CodFilm=f.CodFilm GROUP BY f.Regista
+EX19
+SELECT f.Titolo, sum(p.Incasso) as Incasso_totale, count(*) as Numero_proiezioni FROM Film f, Proiezioni p, Sale s WHERE f.CodFilm=p.CodFilm AND s.CodSala=p.CodSala AND s.Citta= 'Pisa' AND f.Regista='Spielberg' GROUP BY f.CodFilm, f.Titolo
+EX20
+SELECT f.Regista, a.Nome, COUNT(*) AS Numero_Film FROM Film f, Recita r, Attori a WHERE f.CodFilm= r.CodFilm AND a.CodAttore = r.CodAttore GROUP BY f.Regista, a.CodAttore, a.Nome
+EX21
+SELECT f.Regista, f.Titolo FROM Film f, Recita r WHERE f.CodFilm=r.CodFilm GROUP BY f.CodFilm, f.Regista, f.Titolo HAVING count(*)<6
+
