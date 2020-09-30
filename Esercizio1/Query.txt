@@ -138,4 +138,25 @@ EX20
 SELECT f.Regista, a.Nome, COUNT(*) AS Numero_Film FROM Film f, Recita r, Attori a WHERE f.CodFilm= r.CodFilm AND a.CodAttore = r.CodAttore GROUP BY f.Regista, a.CodAttore, a.Nome
 EX21
 SELECT f.Regista, f.Titolo FROM Film f, Recita r WHERE f.CodFilm=r.CodFilm GROUP BY f.CodFilm, f.Regista, f.Titolo HAVING count(*)<6
-
+EX22
+SELECT f.codFilm, f.titolo, SUM(p.Incasso) FROM FILM f, PROIEZIONI p WHERE f.codFilm = p.CodFilm AND f.AnnoProduzione > 2000 GROUP BY f.CodFilm, f.Titolo
+EX23
+SELECT COUNT(*) AS Numero_attori From FILM f, ATTORI a, RECITA r WHERE f.CodFilm=r.CodFilm AND a.CodAttore = r.CodAttore AND a.AnnoNascita >1970
+EX 24
+SELECT f.titolo, sum(p.incasso) FROM FILM f, PROIEZIONI p WHERE f.CodFilm = p.CodFilm AND f.Genere = 'fantascienza' GROUP BY f.Titolo
+EX 25
+SELECT f.titolo, sum(p.incasso) FROM FILM f, PROIEZIONI p WHERE f.CodFilm = p.CodFilm AND f.Genere = 'fantascienza' AND f.AnnoProduzione >=2001 GROUP BY f.Titolo
+EX26
+SELECT f.titolo, sum(p.incasso) FROM FILM f, PROIEZIONI p WHERE f.CodFilm = p.CodFilm AND f.Genere = 'fantascienza' AND f.AnnoProduzione >=2001 GROUP BY f.Titolo
+EX27
+SELECT s.Nome, sum(p.incasso) FROM SALE s, PROIEZIONI p WHERE s.CodSala = p.CodSala AND p.Incasso > 20000 GROUP BY s.Nome
+EX28
+SELECT f.titolo FROM FILM f, PROIEZIONI p, SALE s WHERE s.CodSala = p.CodSala AND f.CodFilm = p.CodFilm AND s.Citta NOT 'Pisa'
+EX29
+SELECT f.titolo FROM FILM f, PROIEZIONI p, SALE s WHERE s.CodSala = p.CodSala AND f.CodFilm = p.CodFilm AND s.Citta = 'Pisa'
+EX30
+SELECT f.titolo FROM FILM f, PROIEZIONI p, WHERE f.CodFilm = p.CodFilm AND p.incasso < 500 GROUP BY f.Titolo
+EX33
+SELECT f.titolo FROM FILM f, RECITA r, ATTORI a WHERE f.CodFilm = r.CodFilm AND a.CodAttore = r.CodAttore AND a.Nazionalita NOT 'ITA'
+EX34 
+SELECT f.titolo FROM FILM f, RECITA r, ATTORI a WHERE f.CodFilm = r.CodFilm AND a.CodAttore = NULL
