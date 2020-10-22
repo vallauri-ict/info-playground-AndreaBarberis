@@ -1,0 +1,19 @@
+E:\Vallauri_quinta\INFO\EX03_SqlServer\EX03_SqlServer\bin\EX03_SqlServer.dll.config
+E:\Vallauri_quinta\INFO\EX03_SqlServer\EX03_SqlServer\bin\EX03_SqlServer.dll
+E:\Vallauri_quinta\INFO\EX03_SqlServer\EX03_SqlServer\bin\EX03_SqlServer.pdb
+E:\Vallauri_quinta\INFO\EX03_SqlServer\EX03_SqlServer\obj\Debug\EX03_SqlServer.csprojAssemblyReference.cache
+E:\Vallauri_quinta\INFO\EX03_SqlServer\EX03_SqlServer\obj\Debug\EX03_SqlServer.dll
+E:\Vallauri_quinta\INFO\EX03_SqlServer\EX03_SqlServer\obj\Debug\EX03_SqlServer.pdb
+H:\Vallauri_quinta\INFO\EX03_SqlServer - Copia\EX03_SqlServer\bin\EX03_SqlServer.dll.config
+H:\Vallauri_quinta\INFO\EX03_SqlServer - Copia\EX03_SqlServer\bin\EX03_SqlServer.dll
+H:\Vallauri_quinta\INFO\EX03_SqlServer - Copia\EX03_SqlServer\bin\EX03_SqlServer.pdb
+H:\Vallauri_quinta\INFO\EX03_SqlServer - Copia\EX03_SqlServer\obj\Debug\EX03_SqlServer.csprojAssemblyReference.cache
+H:\Vallauri_quinta\INFO\EX03_SqlServer - Copia\EX03_SqlServer\obj\Debug\EX03_SqlServer.csproj.CoreCompileInputs.cache
+H:\Vallauri_quinta\INFO\EX03_SqlServer - Copia\EX03_SqlServer\obj\Debug\EX03_SqlServer.dll
+H:\Vallauri_quinta\INFO\EX03_SqlServer - Copia\EX03_SqlServer\obj\Debug\EX03_SqlServer.pdb
+E:\Vallauri_quinta\INFO\registrazione\EX03_SqlServer\obj\Debug\EX03_SqlServer.csprojAssemblyReference.cache
+E:\Vallauri_quinta\INFO\registrazione\EX03_SqlServer\obj\Debug\EX03_SqlServer.dll
+E:\Vallauri_quinta\INFO\registrazione\EX03_SqlServer\obj\Debug\EX03_SqlServer.pdb
+E:\Vallauri_quinta\INFO\registrazione\EX03_SqlServer\bin\EX03_SqlServer.dll.config
+E:\Vallauri_quinta\INFO\registrazione\EX03_SqlServer\bin\EX03_SqlServer.dll
+E:\Vallauri_quinta\INFO\registrazione\EX03_SqlServer\bin\EX03_SqlServer.pdb
