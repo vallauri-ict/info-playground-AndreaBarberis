@@ -170,3 +170,12 @@ EX35
 SELECT a.Nome FROM Attori a WHERE not exist (SELECT * FROM Recita r, Film f WHERE a.CodAttore = r.CodAttore AND f.CodFilm = r.CodFilm AND f.AnnoProduziona < 1960 AND f.Regista = 'Fellini')
 EX36
 SELECT a.Nome FROM Attori a WHERE not exist (SELECT * FROM Recita r, Film f WHERE a.CodAttore = r.CodAttore AND f.CodFilm = r.CodFilm AND f.AnnoProduziona > 1960 AND f.Regista = 'Fellini')
+
+
+SELECT * FROM Sale s LEFT JOIN Proiezioni p ON s.CodSala=p.CodSala WHERE p.CodFilm is null
+
+SELECT * FROM Sale s WHERE not exists (SELECT * FROM Proiezioni p1 WHERE s.CodSala=p1.CodSala)
+
+SELECT a1.* FROM Attori a1, Attori a2 WHERE a1.Capo=a2.CodAttore
+
+SELECT * FROM Attori as a1 INNER JOIN Attori as a2 ON a1.CodAttore=a2.CodAttore
